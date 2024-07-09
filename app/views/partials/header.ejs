@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= locals.shortTitle || 'Bienvenue' %> - Odomac</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/fonts.css">
+    <link rel="stylesheet" href="/css/styles.css">
+  </head>
+  <body class="page page--<%= locals.tag || 'miam' %>">
+    <header class="header" role="banner">
+      <div class="container">
+        <nav class="menu" role="navigation" aria-label="Menu principal">
+          <a class="logo block" href="/" title="Retour à l'accueil" aria-label="Accueil dus site">
+            <img src="/img/logo.png" alt="Odomac">
+          </a>
+          <div class="menu__main">
+            <% for (const page of pages) { %>
+              <a <%- currentPath === page.path ? 'class="menu__link menu__link--active" aria-current="page"' : 'class="menu__link"' %> href="<%= page.path %>">
+                <%= page.shortTitle %>
+              </a>
+            <% } %>
+            <% if (user) { %>
+              <a class="menu__link <%= currentPath === '/golden-book' ? 'menu__link--active' : '' %>" href="/golden-book">Livre d'or</a>
+              <% } %>
+          </div>
+          <div class="menu__user block block--right">
+            <% if (!user) { %>
+              <a href="/login" class="btn">Connexion</a>
+              <a href="/signup" class="btn">Inscription</a>
+            <% } else { %>
+              <a href="/disconnect" class="btn">Déconnexion</a>
+            <% } %>
+          </div>
+        </nav>
+        <h1 class="header__title"><%= locals.title || 'Odomac' %></h1>
+        <span class="header__tag"><%= locals.tag || 'miam' %></span>
+      </div>
+    </header>
+    <main class="content container" role="main">
+      <% if (locals.subtitle) { %><h2 class="content__title"><%= locals.subtitle %></h2><% } %>

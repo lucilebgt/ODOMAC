@@ -1,0 +1,29 @@
+<%- include('partials/header') %>
+
+<form action="/signup" method="POST">
+  <% if (typeof alert !== 'undefined') { %>
+    <div class="form__error" role="alert">
+        <%= alert %>
+    </div>
+  <% } %>
+
+  <div class="form__field">
+    <label>
+      Votre email
+      <input class="form__field__input" type="email" id="email" name="email">
+    </label>
+  </div>
+
+  <div class="form__field">
+    <label>
+      Votre mot de passe
+      <input class="form__field__input" type="password" id="password" name="password">
+    </label>
+  </div>
+
+  <div>
+    <button class="submit__btn" type="submit">Envoyer</button>
+  </div>
+</form>
+
+<%- include('partials/footer') %>
